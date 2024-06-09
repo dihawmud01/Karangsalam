@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desa Wisata Karangsalam</title>
+    <!-- Bootstrap 5 CSS-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <!-- Custom main.css-->
+    <link rel="stylesheet" href="../static/style.css">
+
+    <!-- Icon -->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-oxIQj8HVuQnr5+7q5Ua4Gp5M5c5bAeUz5eLsNq5lXyKjEN6KtUe6f/DA4FbZfN+n" crossorigin="anonymous"></script>
+
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg bg-body-dark py-3 fixed-top navbar-dark" id="navbar-main">
+      <div class="container">
+        <a class="navbar-brand" href="{% url 'home' %}">Desa Karangsalam</a>
+
+        <button class="navbar-toggler" 
+          type="button" 
+          data-bs-toggle="collapse" 
+          data-bs-target="navMenu"
+          onclick="toggleSidebar()"
+          >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navMenu">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">Home</a>
+              <!-- <a class="nav-link active" aria-current="page" href="#">Home</a> -->
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'destination' %}">Destination</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'profile' %}">Profile</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <style>
+      /* Right Sidebar (Offcanvas) */
+      .offcanvas {
+        position: fixed;
+        top: 0;
+        right: -300px; /* Change this value to adjust the sidebar width */
+        bottom: 0;
+        z-index: 1030;
+        padding: 1.5rem;
+        overflow-x: hidden;
+        transition: transform 0.3s ease-in-out;
+      }
+    
+      .offcanvas.show {
+        transform: translateX(-300px); /* Change this value to adjust the sidebar width */
+      }
+    </style>
+</head>
+
+
+<body class="body-home">
+  <section class="hero-area">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-20 offset-lg-0 text-center">
+          <div class="hero-caption">
+            <h1>Welcome to Karangsalam</h1>
+            <p>Explore More on Karangsalam</p>
+            <div class="h-search-form">
+              <form method="GET" action="{% url 'search' %}">
+                {% csrf_token %}
+                <input  class = "search-bar"type="text" name="q">
+                <!-- placeholder="Limpakuwus" -->
+                <button href = "{% url 'search' %}" type="submit"><ion-icon class="li-search" name="search-outline"></ion-icon></button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!--Bootstrap 5 Javascripts-->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD" crossorigin="anonymous"></script>
+  <section>
+    <div class="card-nav-profile">
+      <div class="card">
+        <div class="col" id="baris-card">
+          <div class="col-md-1 card-body">
+            <h5 class="card-title">Karangsalam</h5>
+            <div class="card-text" >
+              Desa Karangsalam Batturaden Banyumas yang berada
+              di kaki Gunung Slamet tepat untuk menjadi destinasi
+              liburan awal tahun bagi keluarga
+            </div>
+          </div>
+          <div class="col-auto card-body" id="right-side-logo">
+            <div class="container-right-body" id = "right-body-position">
+              <div class="row justify-space-between">
+                <div class="col-auto">
+                  <div class="logo-item">
+                    <ion-icon name="train-outline"></ion-icon>
+                    <p>Transport</p>
+                  </div>
+                </div>
+                <div class="col-auto">
+                  <div class="logo-item">
+                    <ion-icon name="fast-food-outline"></ion-icon>
+                    <p>Food</p>
+                  </div>
+                </div>
+                <div class="col-auto">
+                  <div class="logo-item">
+                    <ion-icon name="camera-outline"></ion-icon>
+                    <p>Photos</p>
+                  </div>
+                </div>
+                <div class="col-auto" >
+                  <div class="d-grid gap-2 col-6 mx-auto">
+                    <a href="{% url 'profile' %}" class="btn btn-primary btn-lg" id="button-profile">Profile</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <script>
+    function toggleSidebar() {
+      const sidebar = document.getElementById("navMenu");
+      if (sidebar.classList.contains("show")) {
+        sidebar.classList.remove("show");
+      } else {
+        sidebar.classList.add("show");
+      }
+    }
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-oxIQj8HVuQnr5+7q5Ua4Gp5M5c5bAeUz5eLsNq5lXyKjEN6KtUe6f/DA4FbZfN+n" crossorigin="anonymous"></script>
+</body>
+</html>

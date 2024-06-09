@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>destinasi</title>
+</head>
+<body>
+    {% load static %}
+    {% for setiap_destinasi in destinasi %}
+        {{ setiap_destinasi.nama }}
+        {{ setiap_destinasi.kategori }}
+        {{ setiap_destinasi.suka }}
+        {{ setiap_destinasi.nama_fasilitas}}
+        { setiap_destinasi.location}
+        <img src="/static/images/{{setiap_destinasi.image_file_name}}">
+    {% endfor %}
+
+    {% for facility in facilities %}
+        <p>{{ facility.nama_fasilitas }} - {{ facility.destination.nama }}</p>
+    {% endfor %}
+</body>
+</html>

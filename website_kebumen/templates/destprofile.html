@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>destinasi</title>
+
+    <!-- Bootstrap 5 CSS-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <!-- Icon -->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg bg-body-dark py-3 fixed-top" id="navbar-main">
+        <div class="container">
+          <a class="navbar-brand" href="{% url 'home' %}">Desa Karangsalam</a>
+  
+          <button class="navbar-toggler" 
+          type="button" 
+          data-bs-toggle="collapse" 
+          data-bs-target="navMenu"
+          onclick="toggleSidebar()"
+          >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+  
+          <div class="collapse navbar-collapse" id="navMenu">
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'home' %}">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page"  href="{% url 'destination' %}">Destination</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'profile' %}">Profile</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+    </nav>
+    {% load static %}
+    <div class="body-link-destination">
+        <div class="card bg-light text-white">
+            <img src="{% static 'images/' %}{{ destination.image_file_name }}" class="card-img" >
+            <div class="card-img-overlay">
+              <h1 class="card-title">{{ destination.nama }}</h1>
+            </div>
+        </div>
+    </div>
+
+
+    <style>
+        /* Right Sidebar (Offcanvas) */
+      .offcanvas {
+        position: fixed;
+        top: 0;
+        right: -300px; /* Change this value to adjust the sidebar width */
+        bottom: 0;
+        z-index: 1030;
+        padding: 1.5rem;
+        overflow-x: hidden;
+        transition: transform 0.3s ease-in-out;
+      }
+    
+      .offcanvas.show {
+        transform: translateX(-300px); /* Change this value to adjust the sidebar width */
+      }
+        .body-link-destination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 4%;
+        }
+
+        .card.bg-light {
+            color: none;
+            border: none;
+        }
+
+        .card-title {
+            margin-top: 15%;
+            margin-left: 40%;
+            margin-bottom: 10%;
+            color: #fff;
+        }
+
+        .card-img{
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+            background: cover;
+            filter: brightness(50%);
+            width: 1300px;
+            height: 500px;
+            border-radius: 20px;
+        }
+    </style>
+    <script>
+        function toggleSidebar() {
+          const sidebar = document.getElementById("navMenu");
+          if (sidebar.classList.contains("show")) {
+            sidebar.classList.remove("show");
+          } else {
+            sidebar.classList.add("show");
+          }
+        }
+      </script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-oxIQj8HVuQnr5+7q5Ua4Gp5M5c5bAeUz5eLsNq5lXyKjEN6KtUe6f/DA4FbZfN+n" crossorigin="anonymous"></script>
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-c9JECfGjTVn3bF5jQRmGrh9NdUWDLKOig/W0xHmXFXPcDvXbI3yJbzcvrR+fD6gD" crossorigin="anonymous"></script>
+</body>
+<footer>
+    <div class="continer">
+        <div class="row g-0" id="container-footer">
+            <div class="col-md-6 col-md-8" id="col-left">
+                <div id="fix-center">
+                    <h1>{{ destination.nama }}</h1>
+                    <h5>{{ destination.location }}</h5>
+                    <ion-icon name="time-outline"></ion-icon>
+                    <span style="color: red;">Open</span> 
+                    <span>{{ destination.timeOpen }} - {{ destination.timeClose }}</span>
+                </div>
+                <div class="button-all-in">
+                    
+                    <button id="button-save"><ion-icon name="heart-outline" id="logo-ion"></ion-icon>
+                        Save
+                    </button>
+                    <button id="button-share"><ion-icon name="share-social-outline" id="logo-ion"></ion-icon>
+                        Share
+                    </button>
+                </div>
+            </div>
+            <div class="col-auto" id="col-right">
+                <h2>Fasilitas</h2>
+                <div class="fasility">
+                    {% for facility in facilities %}
+                    <p>
+                        <img src="{% static 'Logo/' %}{{ facility.logo_file_name }}" alt="mosque" width="46" height="46" >
+                        {{ facility.nama_fasilitas }}
+                    </p>
+                    {% endfor %}
+                </div>
+            </div>
+          </div>
+    </div>
+</footer>
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap');
+
+    @media (max-width: 991px) {
+        #col-left {
+            margin-left: 0;
+            margin-bottom: 20px;
+        }
+    }
+    body::-webkit-scrollbar{
+    display: none;
+  }
+    .button-all-in{
+        padding: 10px;
+        display: flex;
+        justify-content: flex-end;
+        align-items: flex-end;
+        margin-bottom: 10px;
+    }
+
+    #button-save{
+        background-color: none;
+        border-radius: 10px;
+        width: 110px;
+        height: 40px;
+        margin-right: 10px;
+    }
+
+    #button-share{
+        border-radius: 10px;
+        width: 110px;
+        height: 40px;
+    }
+
+    #logo-ion{
+        top: 3%;
+    }
+
+    #col-left{
+        margin-left: 6%;
+    }
+
+    /* Right Side */    
+    .container-footer{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #col-right{
+        margin-left: 10px;
+    }
+    #list_fasility{
+        margin-left: 10px;
+    }
+
+    .fasility{
+        font-family: 'Montserrat';
+        font-style: bold;
+        font-size: 16px;
+    }
+
+    @media (min-width: 1920px) {
+        #col-left {
+            width: 66%;
+        }
+        #fix-center{
+            margin-left: 16%;
+        }
+    }
+    
+</style>
+</html>
